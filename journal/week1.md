@@ -15,3 +15,8 @@ cd ..
 - open link for 4567 port in your browser
 - change url to "/api/activities/home"
 - you should get back json
+
+
+## Run Container
+docker run --rm -p 4567:4567 -it backend-flask -e FRONTEND_URL='*' -e BACK
+END_URL='*' backend-flask
