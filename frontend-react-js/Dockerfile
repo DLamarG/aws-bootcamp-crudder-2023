@@ -1,9 +1,20 @@
-FROM node:16.18
+# Use an official Node runtime as a parent image
+FROM node:14
 
-ENV PORT=3000
+# Set the working directory in the container
+WORKDIR /frontend-react
 
-COPY . /frontend-react.js
-WORKDIR /frontend-react.js
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-EXPOSE ${PORT}
+
+# Copy the local code to the container
+COPY . .
+
+# Expose port 3000
+EXPOSE 3000
+
+# Start the application
 CMD ["npm", "start"]
