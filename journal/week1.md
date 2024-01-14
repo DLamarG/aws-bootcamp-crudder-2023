@@ -55,3 +55,16 @@ COPY . .
 EXPOSE 3000
 
 CMD ["npm", "start"]
+
+
+## Container Security Best Practices
+1. Keep host & Docker updated to latest security patches
+2. Docker daemon & containers should run in non-root user mode
+3. Image vulnerability scanning
+4. Trusting a private vs public image registry
+5. No sesitive data in Docker file or images
+6. Use secret management services to share secrets
+7. read only file system and volume for Docker
+8. Seperate databases for long term storage
+9. Use DevSecOps practices while building application security
+10. Ensure all code is tested for vulnerabilities for production use
