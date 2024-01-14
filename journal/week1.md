@@ -38,3 +38,20 @@ ENV FLASK_ENV=development
 EXPOSE ${PORT}
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=4567"]
+
+
+## Frontend Dockerfile
+
+FROM node:14
+
+WORKDIR /frontend-react
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
