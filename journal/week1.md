@@ -57,7 +57,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 
 
-## Container Security Best Practices
+## 10 Container Security Best Practices
 1. Keep host & Docker updated to latest security patches
 2. Docker daemon & containers should run in non-root user mode
 3. Image vulnerability scanning
