@@ -33,7 +33,6 @@ Run pip install -r requirements.txt
 
 COPY . .
 
-#Inside container and will remain set when the container is running
 ENV FLASK_ENV=development
 
 EXPOSE ${PORT}
