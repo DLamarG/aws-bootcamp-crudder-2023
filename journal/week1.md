@@ -70,8 +70,6 @@ CMD ["npm", "start"]
 10. Ensure all code is tested for vulnerabilities for production use
 
 ### Dynamodb 
-
-## Docker Set-up
  # DynomoDB yaml
     - dynamodb-local:
     user: root
@@ -84,7 +82,8 @@ CMD ["npm", "start"]
        - "./docker/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
     
-    - db:
+## Postgres
+     - db:
     image: postgres:13-alpine
     restart: always
     environment:
@@ -94,6 +93,10 @@ CMD ["npm", "start"]
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+
+   volumes:
+  db:
+    driver: local
 
     
 ## CLI Set-up
