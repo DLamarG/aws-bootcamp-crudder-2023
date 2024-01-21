@@ -83,7 +83,7 @@ CMD ["npm", "start"]
     working_dir: /home/dynamodblocal
     
 ## Postgres
-     - db:
+```     - db:
     image: postgres:13-alpine
     restart: always
     environment:
@@ -97,9 +97,20 @@ CMD ["npm", "start"]
    volumes:
   db:
     driver: local
+```
 
+to install the postres client
+
+```sh
+- name: postgres
+    init: |
+      curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+      echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee /etc/apt/sources.list.d/pgdg.list
+      sudo apt update
+      sudo apt install -y posgresql-client-13 libpq-dev
+```
     
-## CLI Set-up
+## CLI Table Set-up
 
 # CREATE A TABLE:
   aws dynamodb create-table \
@@ -123,3 +134,5 @@ CMD ["npm", "start"]
 
 # GET RECORDS:
   aws dynamodb scan --table-name cruddur_cruds --query "Items" --endpoint-url http://localhost:8000
+
+
