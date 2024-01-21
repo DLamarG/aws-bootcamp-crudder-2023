@@ -73,9 +73,7 @@ CMD ["npm", "start"]
 
 ## Docker Set-up
  # DynomoDB yaml
-   - dynamodb-local:
-     #####https://stackoverflow.com/questions/67533058/persist-local-dynamodb-in-volumes-lack-permission-unable-to-open-databa
-     #####We needed to add user: root to get this working.
+    - dynamodb-local:
     user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
     image: "amazon/dynamodb-local:latest"
