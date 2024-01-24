@@ -15,11 +15,15 @@ tasks:
       sudo apt update
       sudo apt install -y postgresql-client-13 libpq-dev
 ports:
-  - name: psql-database
-    port: 5432
-    visibility: public
-  - name: app
+  - name: frontend
     port: 3000
+    onOpen: open-browser
+    visibility: public
+  - name: backend
+    port: 4567
+    visibility: public
+  - name: exray-daemon
+    port: 2000
     visibility: public
 
 vscode:

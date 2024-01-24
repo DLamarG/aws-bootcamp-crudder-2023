@@ -16,7 +16,7 @@ from services.show_activity import *
 
 #HoneyComb --------
 from opentelemetry import trace
-from opentelemetry.instrumentation.flask import FLaskInstrumentor
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
