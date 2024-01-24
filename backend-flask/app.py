@@ -35,7 +35,7 @@ app = Flask(__name__)
 
 #HoneyComb
 #Initialize automatic instrumentation with Flask
-FLaskInstrumentor().instrument_app(app)
+FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 
