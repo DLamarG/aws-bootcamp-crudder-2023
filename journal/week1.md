@@ -23,7 +23,7 @@ END_URL='*' backend-flask
 
 
 ## Backend Dockerfile
-FROM python:3.11-slim-buster
+```FROM python:3.11-slim-buster
 
 WORKDIR /backend-flask
 
@@ -38,10 +38,10 @@ ENV FLASK_ENV=development
 EXPOSE ${PORT}
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=4567"]
-
+```
 
 ## Frontend Dockerfile
-
+```
 FROM node:14
 
 WORKDIR /frontend-react
@@ -55,7 +55,7 @@ COPY . .
 EXPOSE 3000
 
 CMD ["npm", "start"]
-
+```
 
 ## 10 Container Security Best Practices
 1. Keep host & Docker updated to latest security patches
@@ -70,7 +70,9 @@ CMD ["npm", "start"]
 10. Ensure all code is tested for vulnerabilities for production use
 
 ### Dynamodb 
+
  # DynomoDB yaml
+ ```
     - dynamodb-local:
     user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
@@ -81,7 +83,7 @@ CMD ["npm", "start"]
     volumes:
        - "./docker/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
-    
+ ```
 ## Postgres
 ```     - db:
     image: postgres:13-alpine
@@ -113,6 +115,7 @@ to install the postres client
 ## CLI Table Set-up
 
 # CREATE A TABLE:
+```
   aws dynamodb create-table \
     --endpoint-url http://localhost:8000 \
     --table-name Music \
@@ -122,7 +125,9 @@ to install the postres client
     --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE \
     --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
     --table-class STANDARD
+```
 # CREATE AN ITEM:
+```
   aws dynamodb put-item \
     --endpoint-url http://localhost:8000 \
     --table-name Music \
@@ -134,5 +139,5 @@ to install the postres client
 
 # GET RECORDS:
   aws dynamodb scan --table-name cruddur_cruds --query "Items" --endpoint-url http://localhost:8000
-
+```
 
