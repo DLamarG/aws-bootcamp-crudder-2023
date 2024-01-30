@@ -3,20 +3,20 @@
 ### Setting Up X-Ray Service from AWS
 
 ## Importing and utilizing X-Ray In App.py File
-from aws_xray_sdk.core import xray_recorder
+```from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 xray_url = os.getenv("AWS_XRAY_URL")
 xray_recorder.configure(service='Crudder', dynamic_naming=xray_url)
-XRayMiddleware(app, xray_recorder)
+XRayMiddleware(app, xray_recorder)```
 
 ## Command To Create Group
-aws xray create-group \
+```aws xray create-group \
 --group-name "Cruddur" \
---filter-expression "service(\"backend-flask\")"
+--filter-expression "service(\"backend-flask\")"```
 
 ## Added to Docker.yml file
-xray-daemon:
+```xray-daemon:
     image: "amazon/aws-xray-daemon"
     environment:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
@@ -25,4 +25,4 @@ xray-daemon:
     command:
       - "xray -o -b xray-daemon:2000"
     ports:
-      - 2000:2000/udp
+      - 2000:2000/udp```
