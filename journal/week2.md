@@ -30,7 +30,7 @@ XRayMiddleware(app, xray_recorder)
       - 2000:2000/udp
 ```
 
-## Adding CloudWatch Code
+## CloudWatch Code
 ```@app.after_request
 def after_request(response):
     timestamp = strftime('[%Y-%b-%d %H:%M]')
