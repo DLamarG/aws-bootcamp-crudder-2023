@@ -8,12 +8,12 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 xray_url = os.getenv("AWS_XRAY_URL")
 xray_recorder.configure(service='Crudder', dynamic_naming=xray_url)
-XRayMiddleware(app, xray_recorder)```
+XRayMiddleware(app, xray_recorder)``` `
 
 ## Command To Create Group
 ```aws xray create-group \
 --group-name "Cruddur" \
---filter-expression "service(\"backend-flask\")"```
+--filter-expression "service(\"backend-flask\")"``` `
 
 ## Added to Docker.yml file
 ```xray-daemon:
