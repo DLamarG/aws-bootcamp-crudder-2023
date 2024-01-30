@@ -27,4 +27,18 @@ XRayMiddleware(app, xray_recorder)
     command:
       - "xray -o -b xray-daemon:2000"
     ports:
-      - 2000:2000/udp```
+      - 2000:2000/udp
+```
+
+## Adding CloudWatch Code
+```@app.after_request
+def after_request(response):
+    timestamp = strftime('[%Y-%b-%d %H:%M]')
+    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+    return response
+
+
+AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+```
