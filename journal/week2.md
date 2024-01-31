@@ -51,3 +51,37 @@ AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
 # LOGGER.addHandler(console_handler)
 # LOGGER.addHandler(cw_handler)
 ```
+## RollBarr Code
+# Add to requirements.txt
+```
+blinker
+rollbar
+```
+
+# Code for adding env variables
+```
+export ROLLBAR_ACCESS_TOKEN=""
+gp env ROLLBAR_ACCESS_TOKEN=""
+```
+
+# Code for app.py file
+
+```
+import os
+import rollbar
+import rollbar.contrib.flask
+from flask import got_request_exception
+```
+
+```
+rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
+with app.app_context():
+    rollbar.init(rollbar_access_token, environment='development')
+    # send exceptions from `app` to rollbar, using flask's signal system.
+    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+```
+
+# Code for docker.yml file
+```
+ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
+```
