@@ -29,7 +29,7 @@ XRayMiddleware(app, xray_recorder)
     ports:
       - 2000:2000/udp
 ```
-
+<br>
 ## CloudWatch Code
 ```@app.after_request
 def after_request(response):
@@ -51,6 +51,7 @@ AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
 # LOGGER.addHandler(console_handler)
 # LOGGER.addHandler(cw_handler)
 ```
+<br>
 ## RollBarr Code
 # Add to requirements.txt
 ```
