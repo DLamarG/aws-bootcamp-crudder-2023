@@ -1,9 +1,12 @@
 # Week 3 — Decentralized Authentication
 
 ## Installing Amplify
+```
 npm i aws-amplify --save
+```
 
 # Adding Amplify envars to yaml file
+```
 Amplify.configure({
   "AWS_PROJECT_REGION": process.env.REACT_APP_AWS_PROJECT_REGION,
   "aws_cognito_identity_pool_id": process.env.REACT_APP_AWS_COGNITO_IDENTITY_POOL_ID,
@@ -18,16 +21,18 @@ Amplify.configure({
     userPoolId: process.env.REACT_APP_AWS_USER_POOLS_ID,
     userPoolWebClientId: process.env.REACT_APP_AWS_USER_POOLS_WEB_CLIENT_ID,
   });
+```
 
-
+```
   REACT_APP_AWS_PROJECT_REGION=
   REACT_APP_AWS_COGNITO_IDENTITY_POOL_ID=
   REACT_APP_AWS_COGNITO_REGION=
   REACT_APP_AWS_USER_POOLS_ID=
   REACT_APP_CLIENT_ID=
+```
 
-
-
+## Sign-out Page
+```
 import { Auth } from 'aws-amplify';
 
 const [user, setUser] = React.useState(null);
@@ -45,10 +50,11 @@ const signOut = async () => {
     console.log('error signing out: ', error);
   }
 }
-
+```
 
 ## SignIn Page
 
+````
 import { Auth } from 'aws-amplify';
 
 const onsubmit = async (event) => {
@@ -69,3 +75,4 @@ const onsubmit = async (event) => {
     }
     return false
   }
+```
