@@ -49,7 +49,7 @@ export default function HomeFeedPage() {
       return Auth.currentAuthenticatedUser()
     }).then((cognito_user) => {
       setUser({
-        display_name:congnito_user.attributes.name,
+        display_name:cognito_user.attributes.name,
         handle: cognito_user.attributes.preferred_username
       })
     })
