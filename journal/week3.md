@@ -57,22 +57,19 @@ const signOut = async () => {
 ````
 import { Auth } from 'aws-amplify';
 
-const onsubmit = async (event) => {
-    setErrors('')
+ const onsubmit = async (event) => {
     event.preventDefault();
     try {
-      Auth.signIn(username, password)
-        .then(user => {
-          localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
-          window.location.href = "/"
-        })
-        .catch(err => { console.log('Error!', err) });
+      const user = await Auth.signIn(email, password);
+      localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken);
+      window.location.href = "/";
     } catch (error) {
-      if (error.code == 'UserNotConfirmedException') {
-        window.location.href = "/confirm"
+      console.log('Error!', error);
+      if (error.code === 'UserNotConfirmedException') {
+        window.location.href = "/confirm";
+      } else {
+        setErrors(error.message);
       }
-      setErrors(error.message)
     }
-    return false
-  }
+  };
 ```
