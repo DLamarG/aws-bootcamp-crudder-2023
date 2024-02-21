@@ -73,3 +73,34 @@ import { Auth } from 'aws-amplify';
     }
   };
 ```
+
+
+## SignUp Page
+
+```
+const onsubmit = async (event) => {
+    event.preventDefault();
+    setErrors('')
+    try {
+        const { user } = await Auth.signUp({
+            username: email,
+            password: password,
+            attributes: {
+                name: name,
+                email: email,
+                preferred_username: username,
+            },
+            autoSignIn: {
+              enabled: true,
+            }
+        });
+        console.log(user);
+        window.location.href = ' /confirm?email=${email}'
+    } catch (error) {
+        console.log(error);
+        setErrors(error.message)
+    }
+    return false
+  }
+
+```
