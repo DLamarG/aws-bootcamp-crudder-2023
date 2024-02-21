@@ -54,6 +54,8 @@ const signOut = async () => {
 
 ## SignUp Page
 ```
+import { Auth } from 'aws-amplify';
+
 const onsubmit = async (event) => {
     event.preventDefault();
     setErrors('')
