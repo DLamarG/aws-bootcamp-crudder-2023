@@ -52,31 +52,7 @@ const signOut = async () => {
 }
 ```
 
-## SignIn Page
-
-````
-import { Auth } from 'aws-amplify';
-
- const onsubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const user = await Auth.signIn(email, password);
-      localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken);
-      window.location.href = "/";
-    } catch (error) {
-      console.log('Error!', error);
-      if (error.code === 'UserNotConfirmedException') {
-        window.location.href = "/confirm";
-      } else {
-        setErrors(error.message);
-      }
-    }
-  };
-```
-
-
 ## SignUp Page
-
 ```
 const onsubmit = async (event) => {
     event.preventDefault();
@@ -102,5 +78,26 @@ const onsubmit = async (event) => {
     }
     return false
   }
+```
 
+
+## SignIn Page
+````
+import { Auth } from 'aws-amplify';
+
+ const onsubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const user = await Auth.signIn(email, password);
+      localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken);
+      window.location.href = "/";
+    } catch (error) {
+      console.log('Error!', error);
+      if (error.code === 'UserNotConfirmedException') {
+        window.location.href = "/confirm";
+      } else {
+        setErrors(error.message);
+      }
+    }
+  };
 ```
