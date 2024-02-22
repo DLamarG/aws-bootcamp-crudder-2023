@@ -118,6 +118,43 @@ const onsubmit = async (event) => {
 }
 ```
 
+## Recovery Page
+```
+import { Auth } from 'aws-amplify';
+
+const onsubmit_send_code = async (event) => {
+    event.preventDefault();
+    setErrors('')
+    Auth.forgotPassword(username)
+    .then((data) => setErrors(err.message) );
+    .catch((err) => setCognitoErrors(err.message) );
+    return false
+}
+
+const onsubmit_confirm_code =async (event) => {
+    event.preventDefault();
+    setErrors('')
+    if (password == passwordAgain){
+        Auth.forgotPasswordSubmit(username, code, password)
+        .then((data) => setFormState('success'))
+        .catch((err) => setErrors(err.message) );
+    } else {
+        setErrors('Passwords do not match')
+    }
+    return false
+}
+```
+
+## Authenticating Server Side
+```
+Add in the `HomeFeedPage.js` a header eto pass along the access token
+
+  js
+  headers: {
+    Authrization: `Bearer ${localStroage.getItem("access_token")}
+  }
+```
+
 
 ## SignIn Page
 ````
